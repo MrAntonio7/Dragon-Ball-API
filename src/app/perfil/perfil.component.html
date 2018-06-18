@@ -1,0 +1,35 @@
+<div *ngIf="usuario" class="container singup bottom-padding-to-footer">
+    <div>
+        <br>
+        <h3 class="titulo-sing mt-3 mb-5">
+            <img src="assets/img/logo.png" class="img-fluid logo-sing" alt="API Z"><span class="letras-amarillas">{{usuario.username}}</span>
+        </h3>
+    </div>
+    <div class="row">
+        <div class="col-12 panel-perfil">
+            <div class="px-2 py-4">
+
+                <p>
+                    Your email: {{usuario.email}}
+                </p>
+
+                <p id="apikey" (click)="visible_key()">
+                    Your APIKEY: <span class="negrita" [ngClass]="{'hidden-key':var_hidden}">{{usuario.apikey}}</span> <i class="fa fa-arrow-left"></i> Click
+                </p>
+                <div class="text-center"> <button type="button" class="btn btn-primary my-3 hvr-float-shadow" (click)="singout()"> <i class="fa fa-share-square"></i> Sing Out</button></div>
+
+                <hr>
+                <h3 class="text-center my-3">Contacto</h3>
+                <form *ngIf="!confirmed_message" class="form-group" (ngSubmit)="contacto(mensaje)" #mensaje="ngForm">
+                    <p>Email: <span class="negrita">{{usuario.email}}</span></p>
+                    <label class="col-form-label" for="asunto">Subject</label>
+                    <input type="input" class="form-control" name="subject" ngModel>
+                    <label class="col-form-label" for="text">Text</label>
+                    <textarea type="text" class="form-control mb-3" name="text" ngModel maxlength="2000"></textarea>
+                    <button name="button" type="submit" class="btn btn-success ml-auto px-4 mt-3 hvr-float-shadow">Send <i class="fa fa-paper-plane"></i></button>
+                </form>
+                <div class="my-5" id="status-contacto"></div>
+            </div>
+        </div>
+    </div>
+</div>

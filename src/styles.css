@@ -1,1 +1,204 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@font-face {
+    font-family: 'Saiyans Sans';
+    src: url(assets/fonts/Saiyan-Sans.ttf);
+}
+
+body,
+html {
+    font-family: 'Roboto', sans-serif;
+    background: #272B30;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+
+body::after {
+    content: '';
+    display: block;
+    height: 100px;
+}
+
+.navbar {
+    -webkit-box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.75);
+}
+
+.marginb {
+    margin-bottom: 90px;
+}
+
+.navbar-dark {
+    color: #fff;
+    background-color: #36538B!important;
+}
+
+.img-portada {
+    width: 50%;
+    height: 50%;
+}
+
+.portada {
+    /* background-color: #1c1e22; */
+    background-image: url("assets/img/fondo_portada.jpg");
+}
+
+.logo-sing {
+    height: 64px;
+    width: 64px;
+}
+
+.singin,
+.singup,
+.register-confirmed,
+.perfil,
+{
+    margin-top: 150px;
+}
+
+.formulario-sing,
+.panel-perfil {
+    background-color: #f9f9f9;
+    border-top: 1px solid #000;
+    border-radius: 7px;
+}
+
+.titulo-sing {
+    font-family: 'Saiyans Sans', serif;
+    font-size: 3.5em;
+}
+
+.letras-rojas {
+    color: #E60012;
+}
+
+.letras-amarillas {
+    color: #FFF100;
+}
+
+.letras-verdes {
+    color: #28A745;
+}
+
+.letras-naranjas {
+    color: #ff6f00;
+}
+
+.loader {
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+    position: fixed;
+    background-color: #000000b1;
+}
+
+.loader img {
+    width: 12em;
+    height: 12em;
+    margin-top: 20%;
+}
+
+re-captcha>div {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.letra-pequena {
+    font-size: 12px;
+}
+
+.footer {
+    margin-top: 10%;
+    height: 90px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #36538B;
+    -webkit-box-shadow: 0px -8px 5px 0px rgba(0, 0, 0, 0.59);
+    -moz-box-shadow: 0px -8px 5px 0px rgba(0, 0, 0, 0.59);
+    box-shadow: 0px -8px 5px 0px rgba(0, 0, 0, 0.59);
+}
+
+.footer p {
+    font-size: 12px;
+    margin-bottom: 0;
+}
+
+.bottom-padding-to-footer {
+    padding-bottom: 50px;
+}
+
+.fa-github {
+    font-size: 20px;
+}
+
+.link-footer {
+    color: #fff;
+}
+
+.link-footer:hover {
+    color: rgba(255, 255, 255, 0.604);
+    text-decoration: none;
+}
+
+.hidden-key {
+    background-color: #000;
+    color: #000;
+}
+
+.negrita {
+    font-weight: bold;
+}
+
+#apikey {
+    cursor: pointer;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+pre {
+    background-color: #dadada;
+    -webkit-box-shadow: 0px 0px 18px 9px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 18px 9px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 18px 9px rgba(0, 0, 0, 0.75);
+    border-radius: 3px 3px 3px 3px;
+    -moz-border-radius: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px 3px 3px 3px;
+    border: 0px solid #000000;
+}
+
+.box-shadow-top {
+    -webkit-box-shadow: 0px -8px 5px 0px rgba(0, 0, 0, 0.59);
+    -moz-box-shadow: 0px -8px 5px 0px rgba(0, 0, 0, 0.59);
+    box-shadow: 0px -8px 5px 0px rgba(0, 0, 0, 0.59);
+}
+
+.hint {
+    color: #c7c7c7dc!important;
+    font-size: 12px;
+}
+
+.hint a {
+    color: #f7f7f7e9!important;
+}
+
+.hint-link:hover {
+    color: #ffffff!important;
+    text-decoration: underline!important;
+    cursor: pointer!important;
+}

@@ -1,0 +1,34 @@
+<div class="container singin">
+    <div class="text-center">
+        <img src="assets/img/logo.png" class="img-fluid logo-sing" alt="API Z">
+        <br>
+        <h3 class="titulo-sing mt-3 mb-5">
+            <span class="letras-amarillas">Sing</span>
+            <span class="letras-rojas">In</span>
+        </h3>
+    </div>
+    <div class="container py-3" id="panel-login">
+        <form class="form-group row" (ngSubmit)="comprobar_usuario(datos)" #datos="ngForm">
+            <div class="col-0 col-md-2 col-lg-3"></div>
+            <div class="col-12 col-md-8 col-lg-6 formulario-sing">
+                <div class="pt-5 pl-5 pr-5">
+                    <div id="status-login"></div>
+                    <label class="col-form-label" for="user">Username</label>
+                    <input id="usermane" type="text" class="form-control" name="username" ngModel>
+                    <label class="col-form-label mt-3" for="password">Password</label>
+                    <input type="password" class="form-control mb-3" name="password" ngModel>
+                    <a class="letra-pequena" routerLink="/change_password" routerLinkActive="active">Forgot your password?</a>
+                </div>
+                <div class="my-5">
+
+                    <re-captcha id="g-recaptcha" (resolved)="resolved($event)" siteKey="6LcOuyYTAAAAAHTjFuqhA52fmfJ_j5iFk5PsfXaU"></re-captcha>
+                </div>
+                <div class="pb-5 pl-5 pr-5">
+                    <button name="button" type="submit" class="btn btn-success btn-block mt-3 hvr-float-shadow" [(disabled)]="!buttonStatus">Sing In</button>
+                </div>
+            </div>
+            <div class="col-0 col-md-2 col-lg-3"></div>
+        </form>
+    </div>
+
+</div>

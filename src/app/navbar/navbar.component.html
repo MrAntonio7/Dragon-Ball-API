@@ -1,0 +1,29 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark py-0">
+    <a class="navbar-brand" routerLink="home" routerLinkActive="active">
+        <img src="assets/img/logo_apiz.png" width="80" height="80" class="d-inline-block align-top" alt="API Z">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav mr-auto">
+            <a class="nav-item nav-link hvr-underline-from-center" routerLink="home" routerLinkActive="active"> <i class="fa fa-home"></i> Home </a>
+            <a class="nav-item nav-link hvr-underline-from-center" routerLinkActive="active" href="#"><i class="fa fa-book"> </i>  Documentation</a>
+            <a class="nav-item nav-link hvr-underline-from-center" routerLink="formulario" routerLinkActive="active"><i class="fa fa-info-circle"></i>  About</a>
+
+
+        </div>
+        <div class="navbar-nav ml-auto">
+
+            <a *ngIf=!user_logueado class="nav-item nav-link hvr-underline-from-center" routerLink="singin" routerLinkActive="active">Sing In</a>
+            <span *ngIf=!user_logueado class="nav-item nav-link disabled"> or </span>
+            <a *ngIf=!user_logueado class="nav-item nav-link hvr-underline-from-center" routerLink="singup" routerLinkActive="active">Sing Up</a>
+
+            <div *ngIf=user_logueado>
+                <a class="nav-item nav-link hvr-underline-from-center" routerLink="profile" routerLinkActive="active"> <i class="fa fa-user-circle"></i> {{usuario.username}} </a>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="marginb">
+</div>

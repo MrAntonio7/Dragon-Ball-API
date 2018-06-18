@@ -1,0 +1,37 @@
+<div class="container singup">
+    <div class="text-center">
+        <img src="assets/img/logo.png" class="img-fluid logo-sing" alt="API Z">
+        <br>
+        <h3 class="titulo-sing mt-3 mb-5">
+            <span class="letras-amarillas">Sing</span>
+            <span class="letras-rojas">Up</span>
+        </h3>
+    </div>
+    <div class="container py-3" id="panel-login">
+        <form class="form-group row" (ngSubmit)="comprobar_usuario(datos)" #datos="ngForm">
+            <div class="col-0 col-md-2 col-lg-3"></div>
+            <div class="col-12 col-md-8 col-lg-6 formulario-sing">
+                <div class="pt-5 pl-5 pr-5">
+                    <label class="col-form-label" for="username" maxlength="15">Username</label>
+                    <input id="username" type="text" class="form-control" name="username" ngModel>
+                    <div id="status-username"></div>
+                    <label class="col-form-label mt-3" for="email">Email</label>
+                    <input id="email" type="text" class="form-control" name="email" ngModel>
+                    <div id="status-email"></div>
+                    <label class="col-form-label mt-3" for="password">Password</label>
+                    <input type="password" class="form-control mb-3" name="password" ngModel>
+                    <label class="col-form-label mt-3" for="password2">Confirm Password</label>
+                    <input type="password" class="form-control mb-3" name="password2" ngModel>
+                    <div id="status-password"></div>
+                </div>
+                <div class="my-5">
+                    <re-captcha (resolved)="resolved($event)" siteKey="6LcOuyYTAAAAAHTjFuqhA52fmfJ_j5iFk5PsfXaU"></re-captcha>
+                </div>
+                <div class="pb-5 pl-5 pr-5">
+                    <button name="button" type="submit" class="btn btn-success btn-block mt-3 hvr-float-shadow" [(disabled)]="!buttonStatus">Sing Up</button>
+                </div>
+            </div>
+            <div class="col-0 col-md-2 col-lg-3"></div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="container-fluid p-0">
+    <div class="text-center portada">
+        <img class="img-fluid img-portada animated jackInTheBox" src="assets/img/portada.png" alt="DragonBall API">
+    </div>
+    <div class="text-center py-3 text-white box-shadow-top">
+        <p>All the Dragon Ball data you've ever wanted:</p>
+        <p>Characters, Race, Transformations, fusions, planets, universes and sagas!</p>
+        <p>Now with Dragon Ball Super data!</p>
+    </div>
+    <hr>
+    <div class="bottom-padding-to-footer">
+        <div>
+            <h2 class="text-center my-3 text-white">Try it now!</h2>
+        </div>
+        <div class="container">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon">https://dragonballapi.com/api/</span>
+                </div>
+                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon" placeholder="characters/1?apikey=[YOUR_APIKEY]" value="characters/1?apikey=[YOUR_APIKEY]">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="button">Request</button>
+                </div>
+            </div>
+            <p class="hint">Need a hint? try <a class="hint-link" (click)="change_input('characters/1')"> characters/1</a> or <a class="hint-link" (click)="change_input('planets/2')"> planets/2</a> or <a class="hint-link" (click)="change_input('saga/3')"> saga/3</a></p>
+            <pre class="px-3 mt-5">
+        <code class="language-javascript ">
+            {{json}}
+        </code>
+    </pre>
+        </div>
+    </div>
+</div>
