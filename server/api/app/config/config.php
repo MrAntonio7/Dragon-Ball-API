@@ -11,7 +11,7 @@ return new \Phalcon\Config([
         'adapter'     => 'Mysql',
         'host'        => 'mysql.hostinger.es',
         'username'    => 'u447148602_anton',
-        'password'    => '17071997a',
+        'password'    => '********',
         'dbname'      => 'u447148602_apiz',
         'charset'     => 'utf8',
     ],
