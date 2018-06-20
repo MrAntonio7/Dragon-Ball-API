@@ -1,8 +1,10 @@
 
 import { SinginService } from '../singin.service';
-import { Component, OnInit, NgModule } from '@angular/core';
+import { Component, OnInit, NgModule, AfterViewInit, AfterViewChecked } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { SendemailService } from '../sendemail.service';
+import { GetService } from '../get.service';
+import { Router } from '@angular/router';
 declare var $: any;
 declare var CryptoJS: any;
 
@@ -15,7 +17,10 @@ export class PerfilComponent implements OnInit {
   usuario: any;
   var_hidden: any;
   confirmed_message: any = false;
-  constructor(private _service: SinginService, private _service_correo: SendemailService) {
+  datos: any;
+  tablas: any;
+
+  constructor(private _service: SinginService, private _service_correo: SendemailService, private _service_get: GetService,  private _router: Router) {
 
   }
 
@@ -23,6 +28,12 @@ export class PerfilComponent implements OnInit {
     this.var_hidden = true;
     if (localStorage.getItem('usuario')) {
       this.usuario = (JSON.parse(CryptoJS.AES.decrypt(localStorage.getItem('usuario'), 'Usuario registrado by admin').toString(CryptoJS.enc.Utf8)));
+    }
+    if (this.usuario.rol == 'admin'){
+      this._service_get.gettables(this.usuario.apikey).subscribe(data => {
+        this.datos = data;
+        this.tablas = this.datos.tables;
+      });
     }
 
   }
@@ -34,6 +45,7 @@ export class PerfilComponent implements OnInit {
       this.var_hidden = true;
     }
   }
+
 
   contacto(mensaje: NgForm) {
     let correo = {
@@ -53,5 +65,21 @@ export class PerfilComponent implements OnInit {
     localStorage.removeItem("usuario");
     location.href = 'https://dragonballapi.com/';
   }
+
+ editar(data, id, type) {
+  this._router.navigate(['edit', type, id]);
+}
+
+editar_foreing(data, id1, id2, type) {
+  this._router.navigate(['edit_foreing', type, id1, id2]);
+}
+
+  create(type) {
+    this._router.navigate(['new', type]);
+  }
+
+  borrar(id, type) {
+  this._service_get.borrar(type, id, '55d2nZkJrfC5G2x9ZlTv1Q2ugeGSWx');
+}
 
 }

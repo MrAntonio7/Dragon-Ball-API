@@ -1,0 +1,467 @@
+<div class="container-fluid p-0">
+    <div class="text-center portada">
+        <img class="img-fluid img-portada animated jackInTheBox" src="assets/img/portada.png" alt="DragonBall API">
+    </div>
+    <div class="bottom-padding-to-footer">
+        <div class="text-center py-3">
+            <img src="assets/img/logo.png" class="img-fluid logo-sing" alt="API Z">
+            <br>
+            <h2 class="text-center my-3 text-white">Documentation</h2>
+        </div>
+        <hr>
+        <div class="container text-white">
+            <h3>Introduction</h3>
+            <p class="text-documentacion">Welcome to the DragonBallAPI! The unofficial API of Dragon Ball. This documentation should help you familiarise yourself with the resources available and how to consume them with HTTP requests. Read through the getting started section before
+                you dive in. Most of your problems should be solved just by reading through it.</p>
+
+            <h3 class="mt-5">Getting Started</h3>
+            <p class="text-documentacion">Let's make our first API request to the Star Wars API!. </p>
+            <p class="text-documentacion">This API is "public", because we need a APIKEY but we can obtein the APIKEY for FREE simply by registering. Once registered and logged in your profile, you will get your APIKEY, and completely free!.</p>
+            <hr>
+            <p class="text-documentacion">Let's make our first API request to the Star Wars API!</p>
+            <p class="text-documentacion">Open up a terminal and use curl or use in your code. Don't forget to put the <b>apikey parameter.</b></p>
+            <pre class="my-5 pt-3 documentation"> <code> curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET  http://dragonballapi.com/api/characters?apikey=[YOUR_APIKEY]  </code></pre>
+            <hr>
+            <h3>Base URL</h3>
+            <p class="text-documentacion">The Base URL is the root URL for all of the API, if you ever make a request and you get back a 404 NOT FOUND response then check the Base URL first.</p>
+            <p class="text-documentacion">The Base URL for Dragon Ball API is:</p>
+            <pre class="my-5 py-3 documentation"> <code> http://dragonballapi.com/api/ </code></pre>
+            <hr>
+            <h3>Authentication</h3>
+            <p class="text-documentacion">Dragon Ball API is an "open" API, only need the APIKEY and is free!. No authentication is required to query and get data, only APIKEY. If you find a mistake in the data, send email to the author.</p>
+            <h3 class="mt-5">JSON Schema</h3>
+            <p class="text-documentacion">All resources support JSON Schema. Making a request to /api/[resource] will give you the details of that resource. This will allow you to programmatically inspect the attributes of that resource and their types.</p>
+            <hr>
+            <h2 class="mt-4 mb-3">Resources</h2>
+            <hr>
+            <h3 class="mt-5">Characters</h3>
+            <p class="text-documentacion">A character recurse is a individual person or character within the Dragon Ball universe.</p>
+            <h6>Links:</h6>
+            <ul>
+                <li><span class="badge badge-light text-danger my-2 p-2">/characters</span> <span> -- get all the character resources</span></li>
+                <li><span class="badge badge-light text-danger my-2 p-2">/characters/[id]</span> <span>-- get a specific character resource</span></li>
+            </ul>
+            <h6>Example:</h6>
+            <pre class="my-4 py-3 documentation"> <code> http://dragonballapi.com/api/characters/3?apikey=[YOUR_APIKEY] </code></pre>
+            <h6>Attributes:</h6>
+            <table class="table table-doc mt-3 table-hover table-light text-dark text-center mt-1 mb-4">
+                <tbody>
+                    <tr>
+                        <th scope="row">id_character</th>
+                        <td>:number</td>
+                        <td>ID of character resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">name</th>
+                        <td>:string</td>
+                        <td>Name of character resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">id_race</th>
+                        <td>:number</td>
+                        <td>ID of race of character resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">race</th>
+                        <td>:string</td>
+                        <td>Name of race of character resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">gener</th>
+                        <td>:string</td>
+                        <td>Gener of character resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">img</th>
+                        <td>:string</td>
+                        <td>Image's link of character resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">weight</th>
+                        <td>:string</td>
+                        <td>Weight of character resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">height</th>
+                        <td>:string</td>
+                        <td>Height of character resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">birth</th>
+                        <td>:string</td>
+                        <td>Birth's Date of character resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">dead</th>
+                        <td>:string</td>
+                        <td>Dead's Dates of character resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">resurrection</th>
+                        <td>:string</td>
+                        <td>Resurrecition's Dates of character resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">job</th>
+                        <td>:string</td>
+                        <td>Jobs of character resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">alliances</th>
+                        <td>:string</td>
+                        <td>Alliances of character resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">description</th>
+                        <td>:string</td>
+                        <td>Description of character resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">fusion</th>
+                        <td>:string</td>
+                        <td>Fusion of character resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">transformation</th>
+                        <td>:string</td>
+                        <td>Transformations of character resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">apparition</th>
+                        <td>:string</td>
+                        <td>Apparitions of character resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">planet</th>
+                        <td>:string</td>
+                        <td>Name of planet of character resource</td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <hr>
+            <h3 class="mt-5">Races</h3>
+            <p class="text-documentacion">A races recurse is a individual race of person or character within the Dragon Ball universe.</p>
+            <h6>Links:</h6>
+            <ul>
+                <li><span class="badge badge-light text-danger my-2 p-2">/races</span> <span> -- get all the races resources</span></li>
+                <li><span class="badge badge-light text-danger my-2 p-2">/races/[id]</span> <span>-- get a specific races resource</span></li>
+            </ul>
+            <h6>Example:</h6>
+            <pre class="my-4 py-3 documentation"> <code> http://dragonballapi.com/api/races/1?apikey=[YOUR_APIKEY] </code></pre>
+            <h6>Attributes:</h6>
+            <table class="table table-doc mt-3 table-hover table-light text-dark text-center mt-1 mb-4">
+                <tbody>
+                    <tr>
+                        <th scope="row">id_race</th>
+                        <td>:number</td>
+                        <td>ID of race resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">name</th>
+                        <td>:string</td>
+                        <td>Name of race resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">img</th>
+                        <td>:string</td>
+                        <td>Image's link of race resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">description</th>
+                        <td>:string</td>
+                        <td>Description of race resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">id_planet</th>
+                        <td>:number</td>
+                        <td>ID's planet of race resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">planet</th>
+                        <td>:string</td>
+                        <td>Name's planet of race resource</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <hr>
+            <h3 class="mt-5">Transformations</h3>
+            <p class="text-documentacion">A transformation recurse is a individual trasnformation of person or character within the Dragon Ball universe.</p>
+            <h6>Links:</h6>
+            <ul>
+                <li><span class="badge badge-light text-danger my-2 p-2">/transformations</span> <span> -- get all the transformation resources</span></li>
+                <li><span class="badge badge-light text-danger my-2 p-2">/transformations/[id]</span> <span>-- get a specific transformation resource</span></li>
+            </ul>
+            <h6>Example:</h6>
+            <pre class="my-4 py-3 documentation"> <code> http://dragonballapi.com/api/transformations/7?apikey=[YOUR_APIKEY] </code></pre>
+            <h6>Attributes:</h6>
+            <table class="table table-doc mt-3 table-hover table-light text-dark text-center mt-1 mb-4">
+                <tbody>
+                    <tr>
+                        <th scope="row">id_transformation</th>
+                        <td>:number</td>
+                        <td>ID of transformation resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">name</th>
+                        <td>:string</td>
+                        <td>Name of transformation resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">img</th>
+                        <td>:string</td>
+                        <td>Image's link of transformation resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">description</th>
+                        <td>:string</td>
+                        <td>Description of transformation resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">color</th>
+                        <td>:string</td>
+                        <td>Color of trasformation resource</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <hr>
+            <h3 class="mt-5">Fusions</h3>
+            <p class="text-documentacion">A fusion recurse is a individual fusion of two characters within the Dragon Ball universe.</p>
+            <h6>Links:</h6>
+            <ul>
+                <li><span class="badge badge-light text-danger my-2 p-2">/fusions</span> <span> -- get all the fusions resources</span></li>
+                <li><span class="badge badge-light text-danger my-2 p-2">/fusions/[id]</span> <span>-- get a specific fusion resource</span></li>
+            </ul>
+            <h6>Example:</h6>
+            <pre class="my-4 py-3 documentation"> <code> http://dragonballapi.com/api/fusions/1?apikey=[YOUR_APIKEY] </code></pre>
+            <h6>Attributes:</h6>
+            <table class="table table-doc mt-3 table-hover table-light text-dark text-center mt-1 mb-4">
+                <tbody>
+                    <tr>
+                        <th scope="row">id_fusion</th>
+                        <td>:number</td>
+                        <td>ID of fusion resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">name</th>
+                        <td>:string</td>
+                        <td>Name of fusion resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">img</th>
+                        <td>:string</td>
+                        <td>Image's link of fusion resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">method</th>
+                        <td>:string</td>
+                        <td>Method of fusion resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">description</th>
+                        <td>:string</td>
+                        <td>Description of transformation resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">id_character1</th>
+                        <td>:number</td>
+                        <td>ID of one character of fusion resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">character_1</th>
+                        <td>:string</td>
+                        <td>Name of one character of fusion resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">id_character2</th>
+                        <td>:number</td>
+                        <td>ID of one character of fusion resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">character_2</th>
+                        <td>:string</td>
+                        <td>Name of one character of fusion resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">apparition</th>
+                        <td>:string</td>
+                        <td>Apparition of fusion resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">transformation</th>
+                        <td>:string</td>
+                        <td>Transformation of fusion resource</td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <hr>
+            <h3 class="mt-5">Planets</h3>
+            <p class="text-documentacion">A planet recurse is a planet within the Dragon Ball universe.</p>
+            <h6>Links:</h6>
+            <ul>
+                <li><span class="badge badge-light text-danger my-2 p-2">/planets</span> <span> -- get all the planets resources</span></li>
+                <li><span class="badge badge-light text-danger my-2 p-2">/planets/[id]</span> <span>-- get a specific planet resource</span></li>
+            </ul>
+            <h6>Example:</h6>
+            <pre class="my-4 py-3 documentation"> <code> http://dragonballapi.com/api/planets/1?apikey=[YOUR_APIKEY] </code></pre>
+            <h6>Attributes:</h6>
+            <table class="table table-doc mt-3 table-hover table-light text-dark text-center mt-1 mb-4">
+                <tbody>
+                    <tr>
+                        <th scope="row">id_planet</th>
+                        <td>:number</td>
+                        <td>ID of planet resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">name</th>
+                        <td>:string</td>
+                        <td>Name of planet resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">img</th>
+                        <td>:string</td>
+                        <td>Image's link of planet resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">description</th>
+                        <td>:string</td>
+                        <td>Description of planet resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">id_universe</th>
+                        <td>:number</td>
+                        <td>ID of universe of planet resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">universe</th>
+                        <td>:string</td>
+                        <td>Name of universe of planet resource</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <hr>
+            <h3 class="mt-5">Universes</h3>
+            <p class="text-documentacion">A universe recurse is a universe within the Dragon Ball universe.</p>
+            <h6>Links:</h6>
+            <ul>
+                <li><span class="badge badge-light text-danger my-2 p-2">/universes</span> <span> -- get all the universes resources</span></li>
+                <li><span class="badge badge-light text-danger my-2 p-2">/universes/[id]</span> <span>-- get a specific universe resource</span></li>
+            </ul>
+            <h6>Example:</h6>
+            <pre class="my-4 py-3 documentation"> <code> http://dragonballapi.com/api/universes/1?apikey=[YOUR_APIKEY] </code></pre>
+            <h6>Attributes:</h6>
+            <table class="table table-doc mt-3 table-hover table-light text-dark text-center mt-1 mb-4">
+                <tbody>
+                    <tr>
+                        <th scope="row">id_universe</th>
+                        <td>:number</td>
+                        <td>ID of universe resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">name</th>
+                        <td>:string</td>
+                        <td>Name of universe resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">img</th>
+                        <td>:string</td>
+                        <td>Image's link of universe resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">description</th>
+                        <td>:string</td>
+                        <td>Description of universe resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">god</th>
+                        <td>:number</td>
+                        <td>ID of god of universe resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">angel</th>
+                        <td>:number</td>
+                        <td>ID of angel of universe resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">kaioshin</th>
+                        <td>:number</td>
+                        <td>ID of kaioshin of universe resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">god_name</th>
+                        <td>:string</td>
+                        <td>Name of god of universe resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">angel_name</th>
+                        <td>:string</td>
+                        <td>Name of angel of universe resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">kaioshin_name</th>
+                        <td>:string</td>
+                        <td>Name of kaioshin of universe resource</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <hr>
+            <h3 class="mt-5">Sagas</h3>
+            <p class="text-documentacion">A saga recurse is a saga within the Dragon Ball universe.</p>
+            <h6>Links:</h6>
+            <ul>
+                <li><span class="badge badge-light text-danger my-2 p-2">/sagas</span> <span> -- get all the sagas resources</span></li>
+                <li><span class="badge badge-light text-danger my-2 p-2">/sagas/[id]</span> <span>-- get a specific sagas resource</span></li>
+            </ul>
+            <h6>Example:</h6>
+            <pre class="my-4 py-3 documentation"> <code> http://dragonballapi.com/api/sagas/1?apikey=[YOUR_APIKEY] </code></pre>
+            <h6>Attributes:</h6>
+            <table class="table table-doc mt-3 table-hover table-light text-dark text-center mt-1 mb-4">
+                <tbody>
+                    <tr>
+                        <th scope="row">id_saga</th>
+                        <td>:number</td>
+                        <td>ID of saga resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">name</th>
+                        <td>:string</td>
+                        <td>Name of saga resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">img</th>
+                        <td>:string</td>
+                        <td>Image's link of saga resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">description</th>
+                        <td>:string</td>
+                        <td>Description of saga resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">start</th>
+                        <td>:string</td>
+                        <td>Start'd Date of saga resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">end</th>
+                        <td>:string</td>
+                        <td>End'd Date of saga resource</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">episodes</th>
+                        <td>:number</td>
+                        <td>Number of episodes of saga resource</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>

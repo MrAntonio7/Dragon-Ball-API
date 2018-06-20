@@ -1,0 +1,244 @@
+<div class="container singup bottom-padding-to-footer">
+    <div>
+        <br>
+        <div class="text-center">
+            <img src="assets/img/logo.png" class="img-fluid logo-sing" alt="API Z">
+            <h3 class="titulo-sing mt-3 mb-5">
+                <span class="letras-amarillas">Table: </span>
+                <span *ngIf="tipo" class="letras-rojas">{{tipo}}</span>
+            </h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 panel-perfil py-5 px-5">
+            <div *ngIf="tipo=='characters'">
+                <form (ngSubmit)="create(data)" #data="ngForm">
+                    <label class="col-form-label" for="id_character">id_character</label>
+                    <input type="text" class="form-control mb-3" ngModel name="id_personaje">
+                    <label class="col-form-label" for="name">name</label>
+                    <input type="text" class="form-control mb-3" ngModel name="nombre">
+                    <label class="col-form-label" for="race">id_race</label>
+                    <input type="text" class="form-control mb-3" ngModel name="id_raza">
+                    <label class="col-form-label" for="gener">gener</label>
+                    <input type="text" class="form-control mb-3" ngModel name="genero">
+                    <label class="col-form-label" for="img">image</label>
+                    <input type="text" class="form-control mb-3" ngModel name="imagen">
+                    <label class="col-form-label" for="weight">weight</label>
+                    <input type="text" class="form-control mb-3" ngModel name="peso">
+                    <label class="col-form-label" for="height">height</label>
+                    <input type="text" class="form-control mb-3" ngModel name="altura">
+                    <label class="col-form-label" for="birth">birth</label>
+                    <input type="text" class="form-control mb-3" ngModel name="nacimiento">
+                    <label class="col-form-label" for="dead">dead</label>
+                    <input type="text" class="form-control mb-3" ngModel name="muerte">
+                    <label class="col-form-label" for="resurrection">resurrection</label>
+                    <input type="text" class="form-control mb-3" ngModel name="resurreccion">
+                    <label class="col-form-label" for="job">job</label>
+                    <input type="text" class="form-control mb-3" ngModel name="ocupacion">
+                    <label class="col-form-label" for="alliances">alliances</label>
+                    <input type="text" class="form-control mb-3" ngModel name="alianzas">
+                    <label class="col-form-label" for="description">description</label>
+                    <input type="text" class="form-control mb-3" ngModel name="descripcion">
+                    <div id="status-create"></div>
+                    <button type="submit" class="btn btn-block btn-success mb-3 mt-5 px-3 py-2 hvr-float-shadow">Create</button>
+                    <button type="submit" class="btn btn-block btn-danger mb-3 mt-3 px-3 py-2 hvr-float-shadow" (click)="volver()">Back</button>
+                </form>
+            </div>
+
+
+            <div *ngIf="tipo=='races'">
+                <form (ngSubmit)="create(data)" #data="ngForm">
+                    <label class="col-form-label" for="id_race">id_race</label>
+                    <input type="text" class="form-control mb-3" ngModel name="id_raza">
+                    <label class="col-form-label" for="name">name</label>
+                    <input type="text" class="form-control mb-3" ngModel name="nombre">
+                    <label class="col-form-label" for="img">image</label>
+                    <input type="text" class="form-control mb-3" ngModel name="imagen">
+                    <label class="col-form-label" for="description">description</label>
+                    <input type="text" class="form-control mb-3" ngModel name="descripcion">
+                    <label class="col-form-label" for="id_planeta">id_planeta</label>
+                    <input type="text" class="form-control mb-3" ngModel name="id_planeta">
+                    <div id="status-create"></div>
+                    <button type="submit" class="btn btn-block btn-success mb-3 mt-5 px-3 py-2 hvr-float-shadow">Create</button>
+                    <button type="submit" class="btn btn-block btn-danger mb-3 mt-3 px-3 py-2 hvr-float-shadow" (click)="volver()">Back</button>
+                </form>
+            </div>
+
+            <div *ngIf="tipo=='transformations'">
+                <form (ngSubmit)="create(data)" #data="ngForm">
+                    <label class="col-form-label" for="id_transformation">id_transformation</label>
+                    <input type="text" class="form-control mb-3" ngModel name="id_transformacion">
+                    <label class="col-form-label" for="name">name</label>
+                    <input type="text" class="form-control mb-3" ngModel name="nombre">
+                    <label class="col-form-label" for="img">image</label>
+                    <input type="text" class="form-control mb-3" ngModel name="imagen">
+                    <label class="col-form-label" for="description">description</label>
+                    <input type="text" class="form-control mb-3" ngModel name="descripcion">
+                    <label class="col-form-label" for="color">color</label>
+                    <input type="text" class="form-control mb-3" ngModel name="color">
+                    <div id="status-create"></div>
+                    <button type="submit" class="btn btn-block btn-success mb-3 mt-5 px-3 py-2 hvr-float-shadow">Create</button>
+                    <button type="submit" class="btn btn-block btn-danger mb-3 mt-3 px-3 py-2 hvr-float-shadow" (click)="volver()">Back</button>
+                </form>
+            </div>
+
+
+            <div *ngIf="tipo=='fusions'">
+                <form (ngSubmit)="create(data)" #data="ngForm">
+                    <label class="col-form-label" for="id_fusion">id_fusion</label>
+                    <input type="text" class="form-control mb-3" ngModel name="id_fusion">
+                    <label class="col-form-label" for="name">name</label>
+                    <input type="text" class="form-control mb-3" ngModel name="nombre">
+                    <label class="col-form-label" for="img">image</label>
+                    <input type="text" class="form-control mb-3" ngModel name="imagen">
+                    <label class="col-form-label" for="id_character1">id_character1</label>
+                    <input type="text" class="form-control mb-3" ngModel name="id_personaje1">
+                    <label class="col-form-label" for="id_character2">id_character2</label>
+                    <input type="text" class="form-control mb-3" ngModel name="id_personaje2">
+                    <label class="col-form-label" for="description">description</label>
+                    <input type="text" class="form-control mb-3" ngModel name="descripcion">
+                    <label class="col-form-label" for="method">mothod</label>
+                    <input type="text" class="form-control mb-3" ngModel name="metodo">
+                    <div id="status-create"></div>
+                    <button type="submit" class="btn btn-block btn-success mb-3 mt-5 px-3 py-2 hvr-float-shadow">Create</button>
+                    <button type="submit" class="btn btn-block btn-danger mb-3 mt-3 px-3 py-2 hvr-float-shadow" (click)="volver()">Back</button>
+                </form>
+            </div>
+
+            <div *ngIf="tipo=='planets'">
+                <form (ngSubmit)="create(data)" #data="ngForm">
+                    <label class="col-form-label" for="id_planet">id_planet</label>
+                    <input type="text" class="form-control mb-3" ngModel name="id_planeta">
+                    <label class="col-form-label" for="name">name</label>
+                    <input type="text" class="form-control mb-3" ngModel name="nombre">
+                    <label class="col-form-label" for="img">image</label>
+                    <input type="text" class="form-control mb-3" ngModel name="imagen">
+                    <label class="col-form-label" for="description">description</label>
+                    <input type="text" class="form-control mb-3" ngModel name="descripcion">
+                    <label class="col-form-label" for="id_universe">id_universe</label>
+                    <input type="text" class="form-control mb-3" ngModel name="id_universo">
+                    <div id="status-create"></div>
+                    <button type="submit" class="btn btn-block btn-success mb-3 mt-5 px-3 py-2 hvr-float-shadow">Create</button>
+                    <button type="submit" class="btn btn-block btn-danger mb-3 mt-3 px-3 py-2 hvr-float-shadow" (click)="volver()">Back</button>
+                </form>
+            </div>
+
+            <div *ngIf="tipo=='universes'">
+                <form (ngSubmit)="create(data)" #data="ngForm">
+                    <label class="col-form-label" for="id_universe">id_universe</label>
+                    <input type="text" class="form-control mb-3" ngModel name="id_universo">
+                    <label class="col-form-label" for="name">name</label>
+                    <input type="text" class="form-control mb-3" ngModel name="nombre">
+                    <label class="col-form-label" for="img">image</label>
+                    <input type="text" class="form-control mb-3" ngModel name="imagen">
+                    <label class="col-form-label" for="description">description</label>
+                    <input type="text" class="form-control mb-3" ngModel name="descripcion">
+                    <label class="col-form-label" for="id_god">god</label>
+                    <input type="text" class="form-control mb-3" ngModel name="dios">
+                    <label class="col-form-label" for="id_angel">angel</label>
+                    <input type="text" class="form-control mb-3" ngModel name="angel">
+                    <label class="col-form-label" for="id_kaioshin">kaioshin</label>
+                    <input type="text" class="form-control mb-3" ngModel name="kaioshin">
+                    <div id="status-create"></div>
+                    <button type="submit" class="btn btn-block btn-success mb-3 mt-5 px-3 py-2 hvr-float-shadow">Create</button>
+                    <button type="submit" class="btn btn-block btn-danger mb-3 mt-3 px-3 py-2 hvr-float-shadow" (click)="volver()">Back</button>
+                </form>
+            </div>
+
+            <div *ngIf="tipo=='sagas'">
+                <form (ngSubmit)="create(data)" #data="ngForm">
+                    <label class="col-form-label" for="id_saga">id_saga</label>
+                    <input type="text" class="form-control mb-3" ngModel name="id_saga">
+                    <label class="col-form-label" for="name">name</label>
+                    <input type="text" class="form-control mb-3" ngModel name="nombre">
+                    <label class="col-form-label" for="img">image</label>
+                    <input type="text" class="form-control mb-3" ngModel name="imagen">
+                    <label class="col-form-label" for="start">start</label>
+                    <input type="text" class="form-control mb-3" ngModel name="inicio">
+                    <label class="col-form-label" for="end">end</label>
+                    <input type="text" class="form-control mb-3" ngModel name="fin">
+                    <label class="col-form-label" for="description">description</label>
+                    <input type="text" class="form-control mb-3" ngModel name="descripcion">
+                    <label class="col-form-label" for="episodes">episodes</label>
+                    <input type="text" class="form-control mb-3" ngModel name="episodios">
+                    <div id="status-create"></div>
+                    <button type="submit" class="btn btn-block btn-success mb-3 mt-5 px-3 py-2 hvr-float-shadow">Create</button>
+                    <button type="submit" class="btn btn-block btn-danger mb-3 mt-3 px-3 py-2 hvr-float-shadow" (click)="volver()">Back</button>
+                </form>
+            </div>
+
+            <div *ngIf="tipo=='transformation_character'">
+                <form (ngSubmit)="create(data)" #data="ngForm">
+                    <label class="col-form-label" for="id_transformation">id_transformation</label>
+                    <input type="text" class="form-control mb-3" ngModel name="id_transformacion">
+                    <label class="col-form-label" for="id_character">id_character</label>
+                    <input type="text" class="form-control mb-3" ngModel "valor.id_character" name="id_personaje">
+                    <div id="status-create"></div>
+                    <button type="submit" class="btn btn-block btn-success mb-3 mt-5 px-3 py-2 hvr-float-shadow">Create</button>
+                    <button type="submit" class="btn btn-block btn-danger mb-3 mt-3 px-3 py-2 hvr-float-shadow" (click)="volver()">Back</button>
+                </form>
+            </div>
+
+            <div *ngIf="tipo=='transformation_fusion'">
+                <form (ngSubmit)="create(data)" #data="ngForm">
+                    <label class="col-form-label" for="id_transformation">id_transformation</label>
+                    <input type="text" class="form-control mb-3" ngModel name="id_transformacion">
+                    <label class="col-form-label" for="id_fusion">id_fusion</label>
+                    <input type="text" class="form-control mb-3" ngModel name="id_fusion">
+                    <div id="status-create"></div>
+                    <button type="submit" class="btn btn-block btn-success mb-3 mt-5 px-3 py-2 hvr-float-shadow">Create</button>
+                    <button type="submit" class="btn btn-block btn-danger mb-3 mt-3 px-3 py-2 hvr-float-shadow" (click)="volver()">Back</button>
+                </form>
+            </div>
+
+            <div *ngIf="tipo=='apparition_character'">
+                <form (ngSubmit)="create(data)" #data="ngForm">
+                    <label class="col-form-label" for="id_saga">id_saga</label>
+                    <input type="text" class="form-control mb-3" ngModel name="id_saga">
+                    <label class="col-form-label" for="id_character">id_character</label>
+                    <input type="text" class="form-control mb-3" ngModel name="id_personaje">
+                    <div id="status-create"></div>
+                    <button type="submit" class="btn btn-block btn-success mb-3 mt-5 px-3 py-2 hvr-float-shadow">Create</button>
+                    <button type="submit" class="btn btn-block btn-danger mb-3 mt-3 px-3 py-2 hvr-float-shadow" (click)="volver()">Back</button>
+                </form>
+            </div>
+
+            <div *ngIf="tipo=='apparition_race'">
+                <form (ngSubmit)="create(data)" #data="ngForm">
+                    <label class="col-form-label" for="id_saga">id_saga</label>
+                    <input type="text" class="form-control mb-3" ngModel name="id_saga">
+                    <label class="col-form-label" for="id_race">id_race</label>
+                    <input type="text" class="form-control mb-3" ngModel name="id_raza">
+                    <div id="status-create"></div>
+                    <button type="submit" class="btn btn-block btn-success mb-3 mt-5 px-3 py-2 hvr-float-shadow">Create</button>
+                    <button type="submit" class="btn btn-block btn-danger mb-3 mt-3 px-3 py-2 hvr-float-shadow" (click)="volver()">Back</button>
+                </form>
+            </div>
+
+            <div *ngIf="tipo=='apparition_transformation'">
+                <form (ngSubmit)="create(data)" #data="ngForm">
+                    <label class="col-form-label" for="id_saga">id_saga</label>
+                    <input type="text" class="form-control mb-3" ngModel name="id_saga">
+                    <label class="col-form-label" for="id_transformation">id_transformation</label>
+                    <input type="text" class="form-control mb-3" ngModel name="id_transformacion">
+                    <div id="status-create"></div>
+                    <button type="submit" class="btn btn-block btn-success mb-3 mt-5 px-3 py-2 hvr-float-shadow">Create</button>
+                    <button type="submit" class="btn btn-block btn-danger mb-3 mt-3 px-3 py-2 hvr-float-shadow" (click)="volver()">Back</button>
+                </form>
+            </div>
+
+            <div *ngIf="tipo=='apparition_fusion'">
+                <form (ngSubmit)="create(data)" #data="ngForm">
+                    <label class="col-form-label" for="id_saga">id_saga</label>
+                    <input type="text" class="form-control mb-3" ngModel name="id_saga">
+                    <label class="col-form-label" for="id_fusion">id_fusion</label>
+                    <input type="text" class="form-control mb-3" ngModel name="id_fusion">
+                    <div id="status-create"></div>
+                    <button type="submit" class="btn btn-block btn-success mb-3 mt-5 px-3 py-2 hvr-float-shadow">Create</button>
+                    <button type="submit" class="btn btn-block btn-danger mb-3 mt-3 px-3 py-2 hvr-float-shadow" (click)="volver()">Back</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

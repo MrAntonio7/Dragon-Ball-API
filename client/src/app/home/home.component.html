@@ -19,12 +19,12 @@
                 </div>
                 <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon" placeholder="characters/1?apikey=[YOUR_APIKEY]" value="characters/1?apikey=[YOUR_APIKEY]">
                 <div class="input-group-append">
-                    <button class="btn btn-primary" type="button">Request</button>
+                    <button class="btn btn-primary" type="button" (click)="request()">Request</button>
                 </div>
             </div>
-            <p class="hint">Need a hint? try <a class="hint-link" (click)="change_input('characters/1')"> characters/1</a> or <a class="hint-link" (click)="change_input('planets/2')"> planets/2</a> or <a class="hint-link" (click)="change_input('saga/3')"> saga/3</a></p>
-            <pre class="px-3 mt-5">
-        <code class="language-javascript ">
+            <p class="hint">Need a hint? try <a class="hint-link" (click)="change_input('characters/1')"> characters/1</a> or <a class="hint-link" (click)="change_input('fusions/2')"> fusions/2</a> or <a class="hint-link" (click)="change_input('sagas/3')"> sagas/3</a></p>
+            <pre class="px-3 mt-5 home">
+        <code class="language-javascript home">
             {{json}}
         </code>
     </pre>

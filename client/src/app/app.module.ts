@@ -3,13 +3,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { RecaptchaModule } from 'ng-recaptcha';
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
-
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from 'selenium-webdriver/http';
 import { FormsModule } from '@angular/forms';
-
 import { AppComponent } from './app.component';
-import { FormularioComponent } from './formulario/formulario.component';
 import { GetService } from './get.service';
 import { SinginService } from './singin.service';
 import { SingupService } from './singup.service';
@@ -29,10 +26,15 @@ import { ChangepasswordComponent } from './changepassword/changepassword.compone
 import { FooterComponent } from './footer/footer.component';
 import { SendemailService } from './sendemail.service';
 import { AuthuserenterGuard } from './authuserenter.guard';
+import { EditComponent } from './edit/edit.component';
+import { EditForeingComponent } from './edit-foreing/edit-foreing.component';
+import { RestadminGuard } from './restadmin.guard';
+import { NewComponent } from './new/new.component';
+import { DocumentacionComponent } from './documentacion/documentacion.component';
+import { AboutComponent } from './about/about.component';
 @NgModule({
   declarations: [
     AppComponent,
-    FormularioComponent,
     NavbarComponent,
     HomeComponent,
     SinginComponent,
@@ -44,6 +46,11 @@ import { AuthuserenterGuard } from './authuserenter.guard';
     PerfilComponent,
     ChangepasswordComponent,
     FooterComponent,
+    EditComponent,
+    EditForeingComponent,
+    NewComponent,
+    DocumentacionComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,7 +66,8 @@ import { AuthuserenterGuard } from './authuserenter.guard';
     GetService,
     AuthGuard,
     SendemailService,
-    AuthuserenterGuard
+    AuthuserenterGuard,
+    RestadminGuard
 
   ],
   bootstrap: [AppComponent]

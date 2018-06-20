@@ -19,7 +19,7 @@
                 <div class="text-center"> <button type="button" class="btn btn-primary my-3 hvr-float-shadow" (click)="singout()"> <i class="fa fa-share-square"></i> Sing Out</button></div>
 
                 <hr>
-                <h3 class="text-center my-3">Contacto</h3>
+                <h3 class="text-center my-3 font-weight-bold">Contacto</h3>
                 <form *ngIf="!confirmed_message" class="form-group" (ngSubmit)="contacto(mensaje)" #mensaje="ngForm">
                     <p>Email: <span class="negrita">{{usuario.email}}</span></p>
                     <label class="col-form-label" for="asunto">Subject</label>
@@ -29,6 +29,673 @@
                     <button name="button" type="submit" class="btn btn-success ml-auto px-4 mt-3 hvr-float-shadow">Send <i class="fa fa-paper-plane"></i></button>
                 </form>
                 <div class="my-5" id="status-contacto"></div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="usuario.rol =='admin'" class="row mt-5">
+        <div class="col-12 panel-perfil">
+            <div class="px-2 py-4">
+                <h4 class="text-center my-3 font-weight-bold"><i class="fa fa-exclamation-triangle text-warning"></i> REST only for ADMIN <i class="fa fa-exclamation-triangle text-warning"></i></h4>
+                <div *ngIf="datos" class="py-4">
+
+
+
+                    <div id="accordion">
+                        <div class="card">
+                            <div class="card-header text-center bg-dark" id="headingOne">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-dropdown btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Character
+                                      </button>
+                                </h5>
+                            </div>
+
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                <div class="card-body  tabla-responsive">
+                                    <table class="table">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th scope="col">id_character</th>
+                                                <th scope="col">name</th>
+                                                <th scope="col">img</th>
+                                                <th scope="col">id_race</th>
+                                                <th scope="col">gener</th>
+                                                <th scope="col">weight</th>
+                                                <th scope="col">height</th>
+                                                <th scope="col">birth</th>
+                                                <th scope="col">dead</th>
+                                                <th scope="col">resurrection</th>
+                                                <th scope="col">job</th>
+                                                <th scope="col">alliances</th>
+                                                <th scope="col">description</th>
+                                                <th scope="col"></th>
+                                                <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="15">
+                                                    <button (click)="create('characters')" type="button" class="hvr-float-shadow btn btn-primary btn-block">New registry</button>
+                                                </td>
+                                            </tr>
+                                            <tr *ngFor="let c of datos.character">
+                                                <th scope="row">{{c.id_character}}</th>
+                                                <td>
+                                                    <div class="overflow-content">{{c.name}}</div>
+                                                </td>
+                                                <td>
+                                                    <div class="overflow-content overflowx-content">{{c.img}}</div>
+                                                </td>
+                                                <td>
+                                                    <div class="overflow-content">{{c.id_race}}</div>
+                                                </td>
+                                                <td>
+                                                    <div class="overflow-content">{{c.gener}}</div>
+                                                </td>
+                                                <td>
+                                                    <div class="overflow-content">{{c.weight}}</div>
+                                                </td>
+                                                <td>
+                                                    <div class="overflow-content">{{c.height}}</div>
+                                                </td>
+                                                <td>
+                                                    <div class="overflow-content">{{c.birth}}</div>
+                                                </td>
+                                                <td>
+                                                    <div class="overflow-content">{{c.dead}}</div>
+                                                </td>
+                                                <td>
+                                                    <div class="overflow-content">{{c.resurrection}}</div>
+                                                </td>
+                                                <td>
+                                                    <div class="overflow-content">{{c.job}}</div>
+                                                </td>
+                                                <td>
+                                                    <div class="overflow-content">{{c.alliances}}</div>
+                                                </td>
+                                                <td>
+                                                    <div class="overflow-content">{{c.description}}</div>
+                                                </td>
+                                                <td><button (click)="editar(c, c.id_character, 'characters')" type="button" class="hvr-float-shadow btn btn-warning"><i class="fa fa-edit"></i></button></td>
+                                                <td><button (click)="borrar(c.id_character, 'characters')" type="button" class="hvr-float-shadow btn btn-danger"><i class="fa fa-times"></i></button></td>
+                                            </tr>
+                                            <tr>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header text-center bg-dark" id="headingTwo">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-dropdown btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Race
+                                      </button>
+                                </h5>
+                            </div>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                <div class="card-body  tabla-responsive">
+                                    <table class="table">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th scope="col">id_race</th>
+                                                <th scope="col">name</th>
+                                                <th scope="col">img</th>
+                                                <th scope="col">description</th>
+                                                <th scope="col">id_planeta</th>
+                                                <th scope="col"></th>
+                                                <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="15">
+                                                    <button (click)="create('races')" type="button" class="hvr-float-shadow btn btn-primary btn-block">New registry</button>
+                                                </td>
+                                            </tr>
+                                            <tr *ngFor="let c of datos.race">
+                                                <th scope="row">{{c.id_race}}</th>
+                                                <td>
+                                                    <div class="overflow-content">{{c.name}}</div>
+                                                </td>
+                                                <td>
+                                                    <div class="overflow-content overflowx-content">{{c.img}}</div>
+                                                </td>
+                                                <td>
+                                                    <div class="overflow-content">{{c.description}}</div>
+                                                </td>
+                                                <td>
+                                                    <div class="overflow-content">{{c.id_planeta}}</div>
+                                                </td>
+                                                <td><button (click)="editar(c, c.id_race, 'races')" type="button" class="hvr-float-shadow btn btn-warning"><i class="fa fa-edit"></i></button></td>
+                                                <td><button type="button" class="hvr-float-shadow btn btn-danger"><i class="fa fa-times"></i></button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header text-center bg-dark" id="headingThree">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-dropdown btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        Transformation
+                                      </button>
+                                </h5>
+                            </div>
+                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                                <div class="card-body  tabla-responsive">
+                                    <table class="table">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th scope="col">id_transformation</th>
+                                                <th scope="col">name</th>
+                                                <th scope="col">img</th>
+                                                <th scope="col">description</th>
+                                                <th scope="col">color</th>
+                                                <th scope="col"></th>
+                                                <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="15">
+                                                    <button (click)="create('transformations')" type="button" class="hvr-float-shadow btn btn-primary btn-block">New registry</button>
+                                                </td>
+                                            </tr>
+                                            <tr *ngFor="let c of datos.transformation">
+                                                <th scope="row">{{c.id_transformation}}</th>
+                                                <td>
+                                                    <div class="overflow-content">{{c.name}}</div>
+                                                </td>
+                                                <td>
+                                                    <div class="overflow-content overflowx-content">{{c.img}}</div>
+                                                </td>
+                                                <td>
+                                                    <div class="overflow-content">{{c.description}}</div>
+                                                </td>
+                                                <td>
+                                                    <div class="overflow-content">{{c.color}}</div>
+                                                </td>
+                                                <td><button (click)="editar(c, c.id_transformation, 'transformations')" type="button" class="hvr-float-shadow btn btn-warning"><i class="fa fa-edit"></i></button></td>
+                                                <td><button type="button" class="hvr-float-shadow btn btn-danger"><i class="fa fa-times"></i></button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header text-center bg-dark" id="headingFour">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-dropdown btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                            Fusion
+                                          </button>
+                                </h5>
+                            </div>
+                            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                                <div class="card-body  tabla-responsive">
+                                    <table class="table">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th scope="col">id_fusion</th>
+                                                <th scope="col">name</th>
+                                                <th scope="col">img</th>
+                                                <th scope="col">id_character1</th>
+                                                <th scope="col">id_character2</th>
+                                                <th scope="col">description</th>
+                                                <th scope="col">method</th>
+                                                <th scope="col"></th>
+                                                <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="15">
+                                                    <button (click)="create('fusions')" type="button" class="hvr-float-shadow btn btn-primary btn-block">New registry</button>
+                                                </td>
+                                            </tr>
+                                            <tr *ngFor="let c of datos.fusion">
+                                                <th scope="row">{{c.id_fusion}}</th>
+                                                <td>
+                                                    <div class="overflow-content">{{c.name}}</div>
+                                                </td>
+                                                <td>
+                                                    <div class="overflow-content overflowx-content">{{c.img}}</div>
+                                                </td>
+                                                <td>
+                                                    <div class="overflow-content">{{c.id_character1}}</div>
+                                                </td>
+                                                <td>
+                                                    <div class="overflow-content">{{c.id_character2}}</div>
+                                                </td>
+                                                <td>
+                                                    <div class="overflow-content">{{c.description}}</div>
+                                                </td>
+                                                <td>
+                                                    <div class="overflow-content">{{c.method}}</div>
+                                                </td>
+                                                <td><button (click)="editar(c, c.id_fusion, 'fusions')" type="button" class="hvr-float-shadow btn btn-warning"><i class="fa fa-edit"></i></button></td>
+                                                <td><button type="button" class="hvr-float-shadow btn btn-danger"><i class="fa fa-times"></i></button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header text-center bg-dark" id="headingFive">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-dropdown btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                                Planet
+                                              </button>
+                                </h5>
+                            </div>
+                            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+                                <div class="card-body  tabla-responsive">
+                                    <table class="table">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th scope="col">id_planet</th>
+                                                <th scope="col">name</th>
+                                                <th scope="col">img</th>
+                                                <th scope="col">description</th>
+                                                <th scope="col">id_universe</th>
+                                                <th scope="col"></th>
+                                                <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="15">
+                                                    <button (click)="create('planets')" type="button" class="hvr-float-shadow btn btn-primary btn-block">New registry</button>
+                                                </td>
+                                            </tr>
+                                            <tr *ngFor="let c of datos.planet">
+                                                <th scope="row">{{c.id_planet}}</th>
+                                                <td>
+                                                    <div class="overflow-content">{{c.name}}</div>
+                                                </td>
+                                                <td>
+                                                    <div class="overflow-content overflowx-content">{{c.img}}</div>
+                                                </td>
+                                                <td>
+                                                    <div class="overflow-content">{{c.description}}</div>
+                                                </td>
+                                                <td>
+                                                    <div class="overflow-content">{{c.id_universe}}</div>
+                                                </td>
+                                                <td><button (click)="editar(c, c.id_planet, 'planets')" type="button" class="hvr-float-shadow btn btn-warning"><i class="fa fa-edit"></i></button></td>
+                                                <td><button type="button" class="hvr-float-shadow btn btn-danger"><i class="fa fa-times"></i></button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header text-center bg-dark" id="headingSix">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-dropdown btn-link collapsed" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                                    Universe
+                                                  </button>
+                                </h5>
+                            </div>
+                            <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
+                                <div class="card-body  tabla-responsive">
+                                    <table class="table">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th scope="col">id_universe</th>
+                                                <th scope="col">name</th>
+                                                <th scope="col">img</th>
+                                                <th scope="col">description</th>
+                                                <th scope="col">god</th>
+                                                <th scope="col">angel</th>
+                                                <th scope="col">kaioshin</th>
+                                                <th scope="col"></th>
+                                                <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="15">
+                                                    <button (click)="create('universes')" type="button" class="hvr-float-shadow btn btn-primary btn-block">New registry</button>
+                                                </td>
+                                            </tr>
+                                            <tr *ngFor="let c of datos.universe">
+                                                <th scope="row">{{c.id_universe}}</th>
+                                                <td>
+                                                    <div class="overflow-content">{{c.name}}</div>
+                                                </td>
+                                                <td>
+                                                    <div class="overflow-content overflowx-content">{{c.img}}</div>
+                                                </td>
+                                                <td>
+                                                    <div class="overflow-content">{{c.description}}</div>
+                                                </td>
+                                                <td>
+                                                    <div class="overflow-content">{{c.god}}</div>
+                                                </td>
+                                                <td>
+                                                    <div class="overflow-content">{{c.angel}}</div>
+                                                </td>
+                                                <td>
+                                                    <div class="overflow-content">{{c.kaioshin}}</div>
+                                                </td>
+                                                <td><button (click)="editar(c, c.id_universe, 'universes')" type="button" class="hvr-float-shadow btn btn-warning"><i class="fa fa-edit"></i></button></td>
+                                                <td><button type="button" class="hvr-float-shadow btn btn-danger"><i class="fa fa-times"></i></button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header text-center bg-dark" id="headingSeven">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-dropdown btn-link collapsed" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                                            Saga
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordion">
+                                <div class="card-body  tabla-responsive">
+                                    <table class="table">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th scope="col">id_saga</th>
+                                                <th scope="col">name</th>
+                                                <th scope="col">img</th>
+                                                <th scope="col">start</th>
+                                                <th scope="col">end</th>
+                                                <th scope="col">description</th>
+                                                <th scope="col">episodes</th>
+                                                <th scope="col"></th>
+                                                <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="15">
+                                                    <button (click)="create('sagas')" type="button" class="hvr-float-shadow btn btn-primary btn-block">New registry</button>
+                                                </td>
+                                            </tr>
+                                            <tr *ngFor="let c of datos.saga">
+                                                <th scope="row">{{c.id_saga}}</th>
+                                                <td>
+                                                    <div class="overflow-content">{{c.name}}</div>
+                                                </td>
+                                                <td>
+                                                    <div class="overflow-content overflowx-content">{{c.img}}</div>
+                                                </td>
+                                                <td>
+                                                    <div class="overflow-content">{{c.start}}</div>
+                                                </td>
+                                                <td>
+                                                    <div class="overflow-content">{{c.end}}</div>
+                                                </td>
+                                                <td>
+                                                    <div class="overflow-content">{{c.description}}</div>
+                                                </td>
+                                                <td>
+                                                    <div class="overflow-content">{{c.episodes}}</div>
+                                                </td>
+                                                <td><button (click)="editar(c, c.id_saga, 'sagas')" type="button" class="hvr-float-shadow btn btn-warning"><i class="fa fa-edit"></i></button></td>
+                                                <td><button type="button" class="hvr-float-shadow btn btn-danger"><i class="fa fa-times"></i></button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header text-center bg-dark" id="heading8">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-dropdown btn-link collapsed" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8">
+                                                TransformationCharacter
+                                        </button>
+                                </h5>
+                            </div>
+                            <div id="collapse8" class="collapse" aria-labelledby="heading8" data-parent="#accordion">
+                                <div class="card-body  tabla-responsive">
+                                    <table class="table">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th scope="col">id_transformation</th>
+                                                <th scope="col">id_character</th>
+                                                <th scope="col"></th>
+                                                <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="15">
+                                                    <button (click)="create('transformation_character')" type="button" class="hvr-float-shadow btn btn-primary btn-block">New registry</button>
+                                                </td>
+                                            </tr>
+                                            <tr *ngFor="let c of datos.transformation_character">
+                                                <th scope="row">{{c.id_transformation}}</th>
+                                                <td>
+                                                    <div class="overflow-content">{{c.id_character}}</div>
+                                                </td>
+                                                <td><button (click)="editar_foreing(c, c.id_transformation, c.id_character, 'transformation_character')" type="button" class="hvr-float-shadow btn btn-warning"><i class="fa fa-edit"></i></button></td>
+                                                <td><button type="button" class="hvr-float-shadow btn btn-danger"><i class="fa fa-times"></i></button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header text-center bg-dark" id="heading9">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-dropdown btn-link collapsed" data-toggle="collapse" data-target="#collapse9" aria-expanded="false" aria-controls="collapse9">
+                                                    TransformationFusion
+                                            </button>
+                                </h5>
+                            </div>
+                            <div id="collapse9" class="collapse" aria-labelledby="heading9" data-parent="#accordion">
+                                <div class="card-body  tabla-responsive">
+                                    <table class="table">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th scope="col">id_transformation</th>
+                                                <th scope="col">id_fusion</th>
+                                                <th scope="col"></th>
+                                                <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="15">
+                                                    <button (click)="create('transformation_fusion')" type="button" class="hvr-float-shadow btn btn-primary btn-block">New registry</button>
+                                                </td>
+                                            </tr>
+                                            <tr *ngFor="let c of datos.transformation_fusion">
+                                                <th scope="row">{{c.id_transformation}}</th>
+                                                <td>
+                                                    <div class="overflow-content">{{c.id_fusion}}</div>
+                                                </td>
+                                                <td><button (click)="editar_foreing(c, c.id_transformation, c.id_fusion, 'transformation_fusion')" type="button" class="hvr-float-shadow btn btn-warning"><i class="fa fa-edit"></i></button></td>
+                                                <td><button type="button" class="hvr-float-shadow btn btn-danger"><i class="fa fa-times"></i></button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header text-center bg-dark" id="heading10">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-dropdown btn-link collapsed" data-toggle="collapse" data-target="#collapse10" aria-expanded="false" aria-controls="collapse10">
+                                                        ApparitionCharacter
+                                                </button>
+                                </h5>
+                            </div>
+                            <div id="collapse10" class="collapse" aria-labelledby="heading10" data-parent="#accordion">
+                                <div class="card-body  tabla-responsive">
+                                    <table class="table">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th scope="col">id_saga</th>
+                                                <th scope="col">id_character</th>
+                                                <th scope="col"></th>
+                                                <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="15">
+                                                    <button (click)="create('apparition_character')" type="button" class="hvr-float-shadow btn btn-primary btn-block">New registry</button>
+                                                </td>
+                                            </tr>
+                                            <tr *ngFor="let c of datos.apparition_character">
+                                                <th scope="row">{{c.id_saga}}</th>
+                                                <td>
+                                                    <div class="overflow-content">{{c.id_character}}</div>
+                                                </td>
+                                                <td><button (click)="editar_foreing(c, c.id_saga, c.id_character, 'apparition_character')" type="button" class="hvr-float-shadow btn btn-warning"><i class="fa fa-edit"></i></button></td>
+                                                <td><button type="button" class="hvr-float-shadow btn btn-danger"><i class="fa fa-times"></i></button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header text-center bg-dark" id="heading11">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-dropdown btn-link collapsed" data-toggle="collapse" data-target="#collapse11" aria-expanded="false" aria-controls="collapse11">
+                                                                ApparitionRace
+                                                        </button>
+                                </h5>
+                            </div>
+                            <div id="collapse11" class="collapse" aria-labelledby="heading11" data-parent="#accordion">
+                                <div class="card-body  tabla-responsive">
+                                    <table class="table">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th scope="col">id_saga</th>
+                                                <th scope="col">id_race</th>
+                                                <th scope="col"></th>
+                                                <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="15">
+                                                    <button (click)="create('apparition_race')" type="button" class="hvr-float-shadow btn btn-primary btn-block">New registry</button>
+                                                </td>
+                                            </tr>
+                                            <tr *ngFor="let c of datos.apparition_race">
+                                                <th scope="row">{{c.id_saga}}</th>
+                                                <td>
+                                                    <div class="overflow-content">{{c.id_race}}</div>
+                                                </td>
+                                                <td><button (click)="editar_foreing(c, c.id_saga, c.id_race, 'apparition_race')" type="button" class="hvr-float-shadow btn btn-warning"><i class="fa fa-edit"></i></button></td>
+                                                <td><button type="button" class="hvr-float-shadow btn btn-danger"><i class="fa fa-times"></i></button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header text-center bg-dark" id="heading12">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-dropdown btn-link collapsed" data-toggle="collapse" data-target="#collapse12" aria-expanded="false" aria-controls="collapse12">
+                                                                    ApparitionTransformation
+                                                            </button>
+                                </h5>
+                            </div>
+                            <div id="collapse12" class="collapse" aria-labelledby="heading12" data-parent="#accordion">
+                                <div class="card-body  tabla-responsive">
+                                    <table class="table">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th scope="col">id_saga</th>
+                                                <th scope="col">id_transformation</th>
+                                                <th scope="col"></th>
+                                                <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="15">
+                                                    <button (click)="create('apparition_transformation')" type="button" class="hvr-float-shadow btn btn-primary btn-block">New registry</button>
+                                                </td>
+                                            </tr>
+                                            <tr *ngFor="let c of datos.apparition_transformation">
+                                                <th scope="row">{{c.id_saga}}</th>
+                                                <td>
+                                                    <div class="overflow-content">{{c.id_transformation}}</div>
+                                                </td>
+                                                <td><button (click)="editar_foreing(c, c.id_saga, c.id_transformation, 'apparition_transformation')" type="button" class="hvr-float-shadow btn btn-warning"><i class="fa fa-edit"></i></button></td>
+                                                <td><button type="button" class="hvr-float-shadow btn btn-danger"><i class="fa fa-times"></i></button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="card">
+                            <div class="card-header text-center bg-dark" id="heading13">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-dropdown btn-link collapsed" data-toggle="collapse" data-target="#collapse13" aria-expanded="false" aria-controls="collapse13">
+                                                ApparitionFusion
+                                        </button>
+                                </h5>
+                            </div>
+                            <div id="collapse13" class="collapse" aria-labelledby="heading13" data-parent="#accordion">
+                                <div class="card-body  tabla-responsive">
+                                    <table class="table">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th scope="col">id_saga</th>
+                                                <th scope="col">id_fusion</th>
+                                                <th scope="col"></th>
+                                                <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="15">
+                                                    <button (click)="create('apparition_fusion')" type="button" class="hvr-float-shadow btn btn-primary btn-block">New registry</button>
+                                                </td>
+                                            </tr>
+                                            <tr *ngFor="let c of datos.apparition_fusion">
+                                                <th scope="row">{{c.id_saga}}</th>
+                                                <td>
+                                                    <div class="overflow-content">{{c.id_fusion}}</div>
+                                                </td>
+                                                <td><button (click)="editar_foreing(c, c.id_saga, c.id_fusion, 'apparition_fusion')" type="button" class="hvr-float-shadow btn btn-warning"><i class="fa fa-edit"></i></button></td>
+                                                <td><button type="button" class="hvr-float-shadow btn btn-danger"><i class="fa fa-times"></i></button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
