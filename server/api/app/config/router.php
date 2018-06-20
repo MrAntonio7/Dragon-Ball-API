@@ -95,34 +95,27 @@ $router->addGet(
 );
 
 $router->addGet(
-    "/universe", array(
+    "/universes", array(
         'controller' => 'universo',
         'action' => 'get',
     )
 );
 
 $router->addGet(
-    "/universe/:int", array(
+    "/universes/:int", array(
         'controller' => 'universo',
         'action' => 'getbyid',
         'id' => 1
     )
 );
 
-$router->add(
-    "/post/characters", array(
-        'controller' => 'personaje',
-        'action' => 'post',
+$router->addGet(
+    "/tables", array(
+        'controller' => 'tables',
+        'action' => 'get'
     )
 );
 
-
-$router->add(
-    "/post/races", array(
-        'controller' => 'raza',
-        'action' => 'post',
-    )
-);
 
 
 $router->add(
@@ -167,6 +160,413 @@ $router->add(
     )
 );
 
+
+$router->add(
+    "/transformation_character", array(
+        'controller' => 'Transformacionpersonaje',
+        'action' => 'get'
+    )
+);
+
+$router->add(
+    "/transformation_character/:int/:int", array(
+        'controller' => 'Transformacionpersonaje',
+        'action' => 'getbyid',
+        'id' => 1,
+        'id2' => 2
+    )
+);
+
+$router->add(
+    "/transformation_fusion", array(
+        'controller' => 'Transformacionfusion',
+        'action' => 'get'
+    )
+);
+
+$router->add(
+    "/transformation_fusion/:int/:int", array(
+        'controller' => 'Transformacionfusion',
+        'action' => 'getbyid',
+        'id' => 1,
+        'id2' => 2
+    )
+);
+
+$router->add(
+    "/apparition_character", array(
+        'controller' => 'Aparicionpersonaje',
+        'action' => 'get'
+    )
+);
+
+$router->add(
+    "/apparition_character/:int/:int", array(
+        'controller' => 'Aparicionpersonaje',
+        'action' => 'getbyid',
+        'id' => 1,
+        'id2' => 2
+    )
+);
+
+$router->add(
+    "/apparition_race", array(
+        'controller' => 'Aparicionraza',
+        'action' => 'get'
+    )
+);
+
+$router->add(
+    "/apparition_race/:int/:int", array(
+        'controller' => 'Aparicionraza',
+        'action' => 'getbyid',
+        'id' => 1,
+        'id2' => 2
+    )
+);
+
+$router->add(
+    "/apparition_transformation", array(
+        'controller' => 'Apariciontransformacion',
+        'action' => 'get'
+    )
+);
+
+$router->add(
+    "/apparition_transformation/:int/:int", array(
+        'controller' => 'Apariciontransformacion',
+        'action' => 'getbyid',
+        'id' => 1,
+        'id2' => 2
+    )
+);
+
+$router->add(
+    "/apparition_fusion", array(
+        'controller' => 'Aparicionfusion',
+        'action' => 'get'
+    )
+);
+
+$router->add(
+    "/apparition_fusion/:int/:int", array(
+        'controller' => 'Aparicionfusion',
+        'action' => 'getbyid',
+        'id' => 1,
+        'id2' => 2
+    )
+);
+
+$router->add(
+    "/characters/post", array(
+        'controller' => 'Personaje',
+        'action' => 'post'
+    )
+);
+
+$router->add(
+    "/characters/put/:int", array(
+        'controller' => 'Personaje',
+        'action' => 'put',
+        'id' => 1
+    )
+);
+
+$router->add(
+    "/characters/delete/:int", array(
+        'controller' => 'Personaje',
+        'action' => 'delete',
+        'id' => 1
+    )
+);
+
+$router->add(
+    "/races/post", array(
+        'controller' => 'Raza',
+        'action' => 'post'
+    )
+);
+
+$router->add(
+    "/races/put/:int", array(
+        'controller' => 'Raza',
+        'action' => 'put',
+        'id' => 1
+    )
+);
+
+$router->add(
+    "/races/delete/:int", array(
+        'controller' => 'Raza',
+        'action' => 'delete',
+        'id' => 1
+    )
+);
+
+$router->add(
+    "/transformations/post", array(
+        'controller' => 'Transformacion',
+        'action' => 'post'
+    )
+);
+
+$router->add(
+    "/transformations/put/:int", array(
+        'controller' => 'Transformacion',
+        'action' => 'put',
+        'id' => 1
+    )
+);
+
+$router->add(
+    "/transformations/delete/:int", array(
+        'controller' => 'Transformacion',
+        'action' => 'delete',
+        'id' => 1
+    )
+);
+
+$router->add(
+    "/fusions/post", array(
+        'controller' => 'Fusion',
+        'action' => 'post'
+    )
+);
+
+$router->add(
+    "/fusions/put/:int", array(
+        'controller' => 'Fusion',
+        'action' => 'put',
+        'id' => 1
+    )
+);
+
+$router->add(
+    "/fusions/delete/:int", array(
+        'controller' => 'Fusion',
+        'action' => 'delete',
+        'id' => 1
+    )
+);
+
+$router->add(
+    "/planets/post", array(
+        'controller' => 'Planeta',
+        'action' => 'post'
+    )
+);
+
+$router->add(
+    "/planets/put/:int", array(
+        'controller' => 'Planeta',
+        'action' => 'put',
+        'id' => 1
+    )
+);
+
+$router->add(
+    "/planets/delete/:int", array(
+        'controller' => 'Planeta',
+        'action' => 'delete',
+        'id' => 1
+    )
+);
+
+$router->add(
+    "/universes/post", array(
+        'controller' => 'Universo',
+        'action' => 'post'
+    )
+);
+
+$router->add(
+    "/universes/put/:int", array(
+        'controller' => 'Universo',
+        'action' => 'put',
+        'id' => 1
+    )
+);
+
+$router->add(
+    "/universes/delete/:int", array(
+        'controller' => 'Universo',
+        'action' => 'delete',
+        'id' => 1
+    )
+);
+
+$router->add(
+    "/sagas/post", array(
+        'controller' => 'Saga',
+        'action' => 'post'
+    )
+);
+
+$router->add(
+    "/sagas/put/:int", array(
+        'controller' => 'Saga',
+        'action' => 'put',
+        'id' => 1
+    )
+);
+
+$router->add(
+    "/sagas/delete/:int", array(
+        'controller' => 'Saga',
+        'action' => 'delete',
+        'id' => 1
+    )
+);
+
+$router->add(
+    "/transformation_character/post", array(
+        'controller' => 'Transformacionpersonaje',
+        'action' => 'post'
+    )
+);
+
+$router->add(
+    "/transformation_character/put/:int/:int", array(
+        'controller' => 'Transformacionpersonaje',
+        'action' => 'put',
+        'id1' => 1,
+        'id2' => 2
+    )
+);
+
+$router->add(
+    "/transformation_character/delete/:int/:int", array(
+        'controller' => 'Transformacionpersonaje',
+        'action' => 'delete',
+        'id1' => 1,
+        'id2' => 2
+    )
+);
+
+$router->add(
+    "/transformation_fusion/post", array(
+        'controller' => 'Transformacionfusion',
+        'action' => 'post'
+    )
+);
+
+$router->add(
+    "/transformation_fusion/put/:int/:int", array(
+        'controller' => 'Transformacionfusion',
+        'action' => 'put',
+        'id1' => 1,
+        'id2' => 2
+    )
+);
+
+$router->add(
+    "/transformation_fusion/delete/:int/:int", array(
+        'controller' => 'Transformacionfusion',
+        'action' => 'delete',
+        'id1' => 1,
+        'id2' => 2
+    )
+);
+
+$router->add(
+    "/apparition_fusion/post", array(
+        'controller' => 'Aparicionfusion',
+        'action' => 'post'
+    )
+);
+
+$router->add(
+    "/apparition_fusion/put/:int/:int", array(
+        'controller' => 'Aparicionfusion',
+        'action' => 'put',
+        'id1' => 1,
+        'id2' => 2
+    )
+);
+
+$router->add(
+    "/apparition_fusion/delete/:int/:int", array(
+        'controller' => 'Aparicionfusion',
+        'action' => 'delete',
+        'id1' => 1,
+        'id2' => 2
+    )
+);
+
+$router->add(
+    "/apparition_character/post", array(
+        'controller' => 'Aparicionpersonaje',
+        'action' => 'post'
+    )
+);
+
+$router->add(
+    "/apparition_character/put/:int/:int", array(
+        'controller' => 'Aparicionpersonaje',
+        'action' => 'put',
+        'id1' => 1,
+        'id2' => 2
+    )
+);
+
+$router->add(
+    "/apparition_character/delete/:int/:int", array(
+        'controller' => 'Aparicionpersonaje',
+        'action' => 'delete',
+        'id1' => 1,
+        'id2' => 2
+    )
+);
+
+$router->add(
+    "/apparition_transformation/post", array(
+        'controller' => 'Apariciontransformacion',
+        'action' => 'post'
+    )
+);
+
+$router->add(
+    "/apparition_transformation/put/:int/:int", array(
+        'controller' => 'Apariciontransformacion',
+        'action' => 'put',
+        'id1' => 1,
+        'id2' => 2
+    )
+);
+
+$router->add(
+    "/apparition_transformation/delete/:int/:int", array(
+        'controller' => 'Apariciontransformacion',
+        'action' => 'delete',
+        'id1' => 1,
+        'id2' => 2
+    )
+);
+
+$router->add(
+    "/apparition_race/post", array(
+        'controller' => 'Aparicionraza',
+        'action' => 'post'
+    )
+);
+
+$router->add(
+    "/apparition_race/put/:int/:int", array(
+        'controller' => 'Aparicionraza',
+        'action' => 'put',
+        'id1' => 1,
+        'id2' => 2
+    )
+);
+
+$router->add(
+    "/apparition_race/delete/:int/:int", array(
+        'controller' => 'Aparicionraza',
+        'action' => 'delete',
+        'id1' => 1,
+        'id2' => 2
+    )
+);
 
 
 $router->handle();

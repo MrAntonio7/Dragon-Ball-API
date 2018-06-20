@@ -8,9 +8,6 @@ class PersonajeController extends \Phalcon\Mvc\Controller
 
     }
     
-    public function checkApikeyAction(){
-        
-    }
     
         public function proxy_apikeyAction($mykey){
         $this->view->disable();
@@ -51,7 +48,8 @@ class PersonajeController extends \Phalcon\Mvc\Controller
         $phql = 'SELECT 
             Personaje.id_personaje,
             Personaje.nombre,
-            Personaje.genero, 
+            Personaje.genero,
+            Personaje.id_raza,
             Personaje.imagen, 
             Personaje.peso, 
             Personaje.altura, 
@@ -81,6 +79,7 @@ class PersonajeController extends \Phalcon\Mvc\Controller
             $data[] = [
                 'id_character'    => $row->id_personaje,
                 'name'            => $row->nombre,
+                'id_race'         => $row->id_raza,
                 'race'            => $row->raza,
                 'gener'           => $row->genero,
                 'img'             => $row->imagen,
@@ -94,7 +93,7 @@ class PersonajeController extends \Phalcon\Mvc\Controller
                 'description'     => $row->descripcion,
                 'fusion'          => $row->fusiones,
                 'transformations' => $row->transformaciones,
-                ''      => $row->aparicion,
+                'apparition'      => $row->aparicion,
                 'planet'          => $row->planetaorigen
                 
             ];
@@ -112,8 +111,7 @@ class PersonajeController extends \Phalcon\Mvc\Controller
             'status' => 'ERROR',
             'statusCode' => '401',
             'error' => 'Unauthorized',
-            'description' => 'No API key provided.',
-            'aa' => $proxy
+            'description' => 'No API key provided.'
         ));
         }
         
@@ -133,6 +131,7 @@ class PersonajeController extends \Phalcon\Mvc\Controller
         $phql = 'SELECT 
             Personaje.id_personaje,
             Personaje.nombre,
+            Personaje.id_raza,
             Personaje.genero, 
             Personaje.imagen, 
             Personaje.peso, 
@@ -166,6 +165,7 @@ class PersonajeController extends \Phalcon\Mvc\Controller
             $data[] = [
                 'id_character'    => $row->id_personaje,
                 'name'            => $row->nombre,
+                'id_race'         => $row->id_raza,
                 'race'            => $row->raza,
                 'gener'           => $row->genero,
                 'img'             => $row->imagen,
@@ -196,7 +196,7 @@ class PersonajeController extends \Phalcon\Mvc\Controller
             'status' => 'ERROR',
             'statusCode' => '401',
             'error' => 'Unauthorized',
-            'description' => 'No API key provided.'
+            'description' => 'No API key provided'
         ));
         }
         $response->setHeader('Access-Control-Allow-Origin', '*');
@@ -211,20 +211,22 @@ class PersonajeController extends \Phalcon\Mvc\Controller
     public function postAction()
     {
         $this->view->disable();
-        //$request = new Request;
-        $data = $this->request->getRawBody();
-        $row = json_decode($data);
+        $postdata = file_get_contents("php://input");
+        $row = json_decode($postdata);
+        $apikey = $_REQUEST['apikey'];
+        $proxy = $this->proxy_apikey_adminAction($apikey);
+        $response = new \Phalcon\Http\Response();
 
-        $phql = 'INSERT INTO Personaje (id_personaje, nombre, id_raza, genero, imagen, peso, altura, nacimiento, muerte, resurreccion, ocupacion, alianzas, descripcion) VALUES (:id_personaje:, :nombre:, :id_raza:, :genero:, :imagen:, :peso:, :altura:, :nacimiento:, :muerte:, :resurreccion:, :ocupacion:, :alianzas:, :descripcion:)';
-        $status = $this->modelsManager->executeQuery(
-            $phql,
-            [
 
+            $phql = 'INSERT INTO Personaje (id_personaje, nombre, imagen, id_raza, genero, peso, altura, nacimiento, muerte, resurreccion, ocupacion, alianzas, descripcion) VALUES (:id_personaje:, :nombre:, :imagen:, :id_raza:, :genero:, :peso:, :altura:, :nacimiento:, :muerte:, :resurreccion:, :ocupacion:, :alianzas:, :descripcion:)';
+            $status = $this->modelsManager->executeQuery(
+                $phql,
+                [
                 'id_personaje' => $row->id_personaje,
                 'nombre'       => $row->nombre,
+                'imagen'       => $row->imagen,
                 'id_raza'      => $row->id_raza,
                 'genero'       => $row->genero,
-                'imagen'       => $row->imagen,
                 'peso'         => $row->peso,
                 'altura'       => $row->altura,
                 'nacimiento'   => $row->nacimiento,
@@ -232,43 +234,30 @@ class PersonajeController extends \Phalcon\Mvc\Controller
                 'resurreccion' => $row->resurreccion,
                 'ocupacion'    => $row->ocupacion,
                 'alianzas'     => $row->alianzas,
-                'descripcion'  => $row->descripcion
-
-            ]
-        );
-
-        $response = new \Phalcon\Http\Response();
-
-        if ($status->success() === true) {
-
-            $response->setStatusCode(201, 'Creado');
-
-            $row->id_personaje = $status->getModel()->id;
-
-            $response->setJsonContent(
-                [
-                    'status' => 'OK',
-                    'data'   => $row,
+                'descripcion'  => $row->descripcion,
                 ]
             );
-        } else {
 
-            $response->setStatusCode(409, 'Conflicto');
+        if($proxy){
+        $response->setJsonContent(array(
+                'status' => 'OK',
+                'statusCode' => '201'
+        ));
+        }else{
+ 
 
-            $errors = [];
-
-            foreach ($status->getMessages() as $message) {
-                $errors[] = $message->getMessage();
-            }
-
-            $response->setJsonContent(
-                [
-                    'status'   => 'ERROR',
-                    'messages' => $errors,
-                ]
-            );
+        $response->setJsonContent(array(
+            'status' => 'ERROR',
+            'statusCode' => '401',
+            'error' => 'Unauthorized',
+            'description' => 'No API key provided.'
+        ));
         }
+    
 
+        header('Content-type: application/json');
+        header("Access-Control-Allow-Origin: *");
+        header('Access-Control-Allow-Headers: X-Requested-With, content-type, access-control-allow-origin, access-control-allow-methods, access-control-allow-headers');
         return $response;
 
     }
@@ -278,11 +267,11 @@ class PersonajeController extends \Phalcon\Mvc\Controller
     public function putAction()
     {
         $this->view->disable();
-        //$request = new Request;
-        $data = $this->request->getRawBody();
-        $row = json_decode($data);
-        global $id_personaje;
-        $id_personaje = $this->dispatcher->getParam('param');
+        $postdata = file_get_contents("php://input");
+        $row = json_decode($postdata);
+        $apikey = $_REQUEST['apikey'];
+        $proxy = $this->proxy_apikey_adminAction($apikey);
+        $id_personaje = $this->dispatcher->getParam('id');
 
 
         $phql = 'UPDATE Personaje SET 
@@ -305,9 +294,9 @@ class PersonajeController extends \Phalcon\Mvc\Controller
             [
 
                 'nombre'       => $row->nombre,
+                'imagen'       => $row->imagen,
                 'id_raza'      => $row->id_raza,
                 'genero'       => $row->genero,
-                'imagen'       => $row->imagen,
                 'peso'         => $row->peso,
                 'altura'       => $row->altura,
                 'nacimiento'   => $row->nacimiento,
@@ -321,36 +310,25 @@ class PersonajeController extends \Phalcon\Mvc\Controller
             ]
         );
 
-        $response = new Response();
+        $response = new \Phalcon\Http\Response();
+        if($proxy){
+        $response->setJsonContent(array(
+                'status' => 'OK',
+                'statusCode' => '201'
+        ));
+        }else{
+ 
 
-        if ($status->success() === true) {
-
-            $response->setStatusCode(201, 'Creado');
-
-            $row->id_personaje = $status->getModel()->id_personaje;
-
-            $response->setJsonContent(
-                [
-                    'status' => 'OK',
-                ]
-            );
-        } else {
-
-            $response->setStatusCode(409, 'Conflicto');
-
-            $errors = [];
-
-            foreach ($status->getMessages() as $message) {
-                $errors[] = $message->getMessage();
-            }
-
-            $response->setJsonContent(
-                [
-                    'status'   => 'ERROR',
-                    'messages' => $errors,
-                ]
-            );
+        $response->setJsonContent(array(
+            'status' => 'ERROR',
+            'statusCode' => '401',
+            'error' => 'Unauthorized',
+            'description' => 'No API key provided.'
+        ));
         }
+        header('Content-type: application/json');
+        header("Access-Control-Allow-Origin: *");
+        header('Access-Control-Allow-Headers: X-Requested-With, content-type, access-control-allow-origin, access-control-allow-methods, access-control-allow-headers');
 
         return $response;
 
@@ -361,12 +339,11 @@ class PersonajeController extends \Phalcon\Mvc\Controller
     public function deleteAction()
     {
         $this->view->disable();
-        //$request = new Request;
-        $data = $this->request->getRawBody();
-        $row = json_decode($data);
-        global $id_personaje;
-        $id_personaje = $this->dispatcher->getParam('param');
-
+        $postdata = file_get_contents("php://input");
+        $row = json_decode($postdata);
+        $apikey = $_REQUEST['apikey'];
+        $proxy = $this->proxy_apikey_adminAction($apikey);
+        $id_personaje = $this->dispatcher->getParam('id');
         $phql = 'DELETE FROM Personaje WHERE id_personaje = :id_personaje:';
         $status = $this->modelsManager->executeQuery(
             $phql,
@@ -375,41 +352,122 @@ class PersonajeController extends \Phalcon\Mvc\Controller
             ]
         );
 
-        $response = new Response();
+       $response = new \Phalcon\Http\Response();
+        if($proxy){
+        $response->setJsonContent(array(
+                'status' => 'OK',
+                'statusCode' => '201'
+        ));
+        }else{
+ 
 
-        if ($status->success() === true) {
-
-            $response->setStatusCode(201, 'Creado');
-
-            $row->id_personaje = $status->getModel()->id_personaje;
-
-            $response->setJsonContent(
-                [
-                    'status' => 'OK',
-                ]
-            );
-        } else {
-
-            $response->setStatusCode(409, 'Conflicto');
-
-            $errors = [];
-
-            foreach ($status->getMessages() as $message) {
-                $errors[] = $message->getMessage();
-            }
-
-            $response->setJsonContent(
-                [
-                    'status'   => 'ERROR',
-                    'messages' => $errors,
-                ]
-            );
+        $response->setJsonContent(array(
+            'status' => 'ERROR',
+            'statusCode' => '401',
+            'error' => 'Unauthorized',
+            'description' => 'No API key provided.'
+        ));
         }
+        header('Content-type: application/json');
+        header("Access-Control-Allow-Origin: *");
+        header('Access-Control-Allow-Headers: X-Requested-With, content-type, access-control-allow-origin, access-control-allow-methods, access-control-allow-headers');
 
         return $response;
 
     }
 
+        public function proxy_apikey_adminAction($mykey){
+        $this->view->disable();
+        $phql = 'SELECT
+            apikey
+          FROM Usuario WHERE rol=:rol:';
+        $rows = $this->modelsManager->executeQuery($phql,['rol'=>'admin']);
+        $data = [];
+        foreach ($rows as $row){
+            $apikeys = Array();
+            array_push($apikeys, $row->apikey);
+            $data[] = [
+                'apikey' => $row->apikey
+            ];
+        }
+        $response = [];
+        foreach ($data as $a){
+            foreach ($a as $key){
+                array_push($response, $key);
+            }
+        }
+        foreach ($response as $key){
+            if($mykey == $key){
+                $var_final = true;
+                break;
+            }else{
+                $var_final = false;
+            }
+        }
+        return $var_final;
+    }
+
+        public function getfullAction()
+    {
+        $this->view->disable();
+        $apikey = $_REQUEST['apikey'];
+        $proxy = $this->proxy_apikey_adminAction($apikey);
+        $phql = 'SELECT 
+            Personaje.id_personaje,
+            Personaje.nombre,
+            Personaje.genero, 
+            Personaje.imagen, 
+            Personaje.peso, 
+            Personaje.altura, 
+            Personaje.nacimiento, 
+            Personaje.muerte, 
+            Personaje.resurreccion, 
+            Personaje.ocupacion, 
+            Personaje.alianzas, 
+            Personaje.descripcion
+          FROM Personaje ';
+        $rows = $this->modelsManager->executeQuery($phql);
+        $data = [];
+        foreach ($rows as $row){
+            $data[] = [
+                'id_character'    => $row->id_personaje,
+                'name'            => $row->nombre,
+                'gener'           => $row->genero,
+                'img'             => $row->imagen,
+                'weight'          => $row->peso,
+                'height'          => $row->altura,
+                'bith'            => $row->nacimiento,
+                'dead'            => $row->muerte,
+                'resurrection'    => $row->resurreccion,
+                'job'             => $row->ocupacion,
+                'alliances'       => $row->alianzas,
+                'description'     => $row->descripcion
+                
+            ];
+        }
+        $response = new Phalcon\Http\Response();
+
+        if ($proxy){
+        $response->setJsonContent(array(
+            'status' => 'FOUND',
+            'statusCode' => '302',
+            'data' => $data
+        ));
+        } else{
+            $response->setJsonContent(array(
+            'status' => 'ERROR',
+            'statusCode' => '401',
+            'error' => 'Unauthorized',
+            'description' => 'No API key provided.'
+        ));
+        }
+        
+        $response->setHeader('Access-Control-Allow-Origin', '*');
+        $response->setHeader('Access-Control-Allow-Headers', 'X-Requested-With');      
+        return $response;
+        //return json_encode($data, JSON_UNESCAPED_UNICODE);
+        
+    }
 
 }
 

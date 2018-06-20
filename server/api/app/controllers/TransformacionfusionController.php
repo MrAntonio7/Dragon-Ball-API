@@ -1,14 +1,13 @@
 <?php
 
-class TransformacionController extends \Phalcon\Mvc\Controller
+class TransformacionfusionController extends \Phalcon\Mvc\Controller
 {
 
     public function indexAction()
     {
 
     }
-    
-        public function proxy_apikeyAction($mykey){
+           public function proxy_apikeyAction($mykey){
         $this->view->disable();
         $phql = 'SELECT
             apikey
@@ -38,6 +37,7 @@ class TransformacionController extends \Phalcon\Mvc\Controller
         }
         return $var_final;
     }
+    
     
             public function proxy_apikey_adminAction($mykey){
         $this->view->disable();
@@ -69,22 +69,18 @@ class TransformacionController extends \Phalcon\Mvc\Controller
         }
         return $var_final;
     }
-    
         public function getAction()
     {
         $this->view->disable();
         $apikey = $_REQUEST['apikey'];
         $proxy = $this->proxy_apikeyAction($apikey);
-        $phql = 'SELECT * FROM Transformacion';
+        $phql = 'SELECT * FROM TransformacionFusion';
         $rows = $this->modelsManager->executeQuery($phql);
         $data = [];
         foreach ($rows as $row){
             $data[] = [
-                'id_transformation'  => $row->id_transformacion,
-                'name'               => $row->nombre,
-                'img'                => $row->imagen,
-                'description'        => $row->descripcion,
-                'color'              => $row->color
+                'id_transformation'        => $row->id_transformacion,
+                'id_fusion'           => $row->id_fusion,
                 
             ];
         }
@@ -117,21 +113,22 @@ class TransformacionController extends \Phalcon\Mvc\Controller
     {
         $this->view->disable();
         $parameter = $this->dispatcher->getParam("id");
+        $parameter2 = $this->dispatcher->getParam("id2");
         $apikey = $_REQUEST['apikey'];
         $proxy = $this->proxy_apikeyAction($apikey);
-        $phql = 'SELECT * FROM Transformacion
-          WHERE Transformacion.id_transformacion = :parameter:';
+        $phql = 'SELECT * FROM TransformacionFusion
+          WHERE TransformacionFusion.id_transformacion = :parameter: AND 
+          TransformacionFusion.id_fusion = :parameter2:';
         $rows = $this->modelsManager->executeQuery($phql, [
-            'parameter' => $parameter
+            'parameter' => $parameter,
+            'parameter2' => $parameter2
+            
             ]);
         $data = [];
         foreach ($rows as $row){
             $data[] = [
-                'id_transformation'  => $row->id_transformacion,
-                'name'               => $row->nombre,
-                'img'                => $row->imagen,
-                'description'        => $row->descripcion,
-                'color'              => $row->color
+                'id_transformation'      => $row->id_transformacion,
+                'id_fusion'           => $row->id_fusion,
             ];
         }
         $response = new Phalcon\Http\Response();
@@ -156,8 +153,9 @@ class TransformacionController extends \Phalcon\Mvc\Controller
         //return json_encode($data, JSON_UNESCAPED_UNICODE);
         
     }
-    //POST transformacion
-            public function postAction()
+    
+    //POST transformacion_fusion
+         public function postAction()
     {
         $this->view->disable();
         $postdata = file_get_contents("php://input");
@@ -167,15 +165,12 @@ class TransformacionController extends \Phalcon\Mvc\Controller
         $response = new \Phalcon\Http\Response();
 
 
-            $phql = 'INSERT INTO Transformacion (id_transformacion, nombre, imagen, descripcion, color) VALUES (:id_transformacion:, :nombre:, :imagen:, :descripcion:, :color:)';
+            $phql = 'INSERT INTO TransformacionFusion (id_transformacion, id_fusion) VALUES (:id_transformacion:, :id_fusion:)';
             $status = $this->modelsManager->executeQuery(
                 $phql,
                 [
                 'id_transformacion'      => $row->id_transformacion,
-                'nombre'                 => $row->nombre,
-                'imagen'                 => $row->imagen,
-                'descripcion'            => $row->descripcion,
-                'color'                  => $row->color
+                'id_fusion'           => $row->id_fusion,
                 ]
             );
 
@@ -203,7 +198,7 @@ class TransformacionController extends \Phalcon\Mvc\Controller
 
     }
 
-    //PUT transformacion
+    //PUT transformacion_fusion
 
     public function putAction()
     {
@@ -212,29 +207,26 @@ class TransformacionController extends \Phalcon\Mvc\Controller
         $row = json_decode($postdata);
         $apikey = $_REQUEST['apikey'];
         $proxy = $this->proxy_apikey_adminAction($apikey);
-        $id_transformacion = $this->dispatcher->getParam('id');
-
-
-        $phql = 'UPDATE Transformacion SET
-        nombre = :nombre:,
-        imagen  = :imagen:,
-        descripcion = :descripcion:,
-        color = :color:
-        WHERE id_transformacion = :id_transformacion:';
-
-        $status = $this->modelsManager->executeQuery(
-            $phql,
+        $id_transformacion = $this->dispatcher->getParam('id1');
+        $id_fusion = $this->dispatcher->getParam('id2');
+        
+        $phql1 = 'DELETE FROM TransformacionFusion WHERE id_transformacion = :id_transformacion: AND id_fusion = :id_fusion:';
+        $status1 = $this->modelsManager->executeQuery(
+            $phql1,
             [
-
-                'nombre'                 => $row->nombre,
-                'imagen'                 => $row->imagen,
-                'descripcion'            => $row->descripcion,
-                'color'                  => $row->color,
-                'id_transformacion'      => $id_transformacion
-
+                'id_transformacion'    => $id_transformacion,
+                'id_fusion'    => $id_fusion
             ]
         );
 
+            $phql2 = 'INSERT INTO TransformacionFusion (id_transformacion, id_fusion) VALUES (:id_transformacion:, :id_fusion:)';
+            $status2 = $this->modelsManager->executeQuery(
+                $phql2,
+                [
+                'id_transformacion'      => $row->id_transformacion,
+                'id_fusion'           => $row->id_fusion,
+                ]
+            );
         $response = new \Phalcon\Http\Response();
         if($proxy){
         $response->setJsonContent(array(
@@ -259,7 +251,7 @@ class TransformacionController extends \Phalcon\Mvc\Controller
 
     }
 
-    //DELETE transformacion
+    //DELETE transformacion_fusion
 
     public function deleteAction()
     {
@@ -268,12 +260,14 @@ class TransformacionController extends \Phalcon\Mvc\Controller
         $row = json_decode($postdata);
         $apikey = $_REQUEST['apikey'];
         $proxy = $this->proxy_apikey_adminAction($apikey);
-        $id_transformacion = $this->dispatcher->getParam('id');
-        $phql = 'DELETE FROM Transformacion WHERE id_transformacion = :id_transformacion:';
+        $id_transformacion = $this->dispatcher->getParam('id1');
+        $id_fusion = $this->dispatcher->getParam('id2');
+        $phql = 'DELETE FROM TransformacionFusion WHERE id_transformacion = :id_transformacion: AND id_fusion = :id_fusion:';
         $status = $this->modelsManager->executeQuery(
             $phql,
             [
-                'id_transformacion'    => $id_transformacion
+                'id_transformacion'    => $id_transformacion,
+                'id_fusion'    => $id_fusion
             ]
         );
 
@@ -300,7 +294,6 @@ class TransformacionController extends \Phalcon\Mvc\Controller
         return $response;
 
     }
-
 
 }
 
